@@ -26,6 +26,9 @@ def full(entity, planter = planter_default):
 			
 		harvest.remove(position_companion)
 		
+		while num_drones() >= max_drones():
+			print("Max Drones!")
+			
 		spawn_drone(execute)
 		
 		blocked.add(position)

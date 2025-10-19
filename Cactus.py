@@ -1,6 +1,6 @@
-import Utils, Move, Path, Plant, List, Drones
+import Utils, Move, Path, Planter, List, Drones
 
-
+planter = Planter.new()
 def cactus():
 	drones = set()
 	for y in range(get_world_size()):
@@ -10,20 +10,32 @@ def cactus():
 			pass
 		
 		def execute():
+			global y
 			for position in Path.horizontal(y):
 				Move.to(position)
-				Plant.set(Entities.Cactus)
-				
-			for iteration in range(get_world_size() - 1, -1, -1):
+				planter["set"](Entities.Cactus)
+			
+			Move.to((0, y))
+
+			for iteration in range(get_world_size()):
 				swapped = False
-				for x in range(iteration):
-					Move.to((x, y))
-		
-					value = measure()
-					value_right = measure(East)
+				for x in range(get_pos_x(), get_world_size() - iteration - 1, 1):
+					position = (x, y)
+					Move.to(position)
 					
-					if value > value_right:
+					if measure() > measure(East):
 						swap(East)
+						swapped = True
+				
+				if not swapped:
+					break
+
+				for x in range(get_pos_x(), 0 + iteration, -1):
+					position = (x, y)
+					Move.to(position)
+					
+					if measure() < measure(West):
+						swap(West)
 						swapped = True
 						
 				if not swapped:
@@ -44,16 +56,25 @@ def cactus():
 			pass
 		
 		def execute():
-			for iteration in range(get_world_size() - 1, -1, -1):
+			for iteration in range(get_world_size()):
 				swapped = False
-				for y in range(iteration):
-					Move.to((x, y))
-		
-					value = measure()
-					value_right = measure(North)
+				for y in range(get_pos_y(), get_world_size() - iteration - 1, 1):
+					position = (x, y)
+					Move.to(position)
 					
-					if value > value_right:
+					if measure() > measure(North):
 						swap(North)
+						swapped = True
+				
+				if not swapped:
+					break
+
+				for y in range(get_pos_y(), 0 + iteration, -1):
+					position = (x, y)
+					Move.to(position)
+					
+					if measure() < measure(South):
+						swap(South)
 						swapped = True
 						
 				if not swapped:

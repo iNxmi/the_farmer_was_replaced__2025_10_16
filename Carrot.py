@@ -1,7 +1,7 @@
-import Utils, Path, Companion
+import Utils, Path, Companion, Planter
 
 planter = Planter.new()
-planter["set_watering_threshold"](0.75)
+planter["set_watering_threshold"](0.25)
 
 while True:
 	Utils.initialize()
