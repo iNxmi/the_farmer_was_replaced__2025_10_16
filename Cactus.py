@@ -41,7 +41,7 @@ def cactus():
 				if not swapped:
 					break
 				
-		drone = spawn_drone(execute)
+		drone = Drones.spawn(execute)
 		drones.add(drone)
 
 	Move.to((0, 0))
@@ -80,7 +80,7 @@ def cactus():
 				if not swapped:
 					break
 				
-		drone = spawn_drone(execute)
+		drone = Drones.spawn(execute)
 		drones.add(drone)
 		
 	Move.to((0,0))

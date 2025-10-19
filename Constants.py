@@ -10,7 +10,9 @@ HATS = [
 	Hats.Traffic_Cone,
 	Hats.Tree_Hat,
 	Hats.Sunflower_Hat,
-	Hats.Wizard_Hat
+	Hats.Wizard_Hat,
+	Hats.Golden_Cactus_Hat,
+	Hats.Gold_Hat
 ]
 
 RIGHT_OF = {
