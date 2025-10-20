@@ -25,4 +25,10 @@ def get_sliced(list, start, end):
 def divide(list, number):
 	result = []
 	
+def get_reversed(lst):
+	result = list()
+	for i in range(len(lst) - 1, -1, -1):
+		result.append(lst[i])
+	
+	return result
 	
