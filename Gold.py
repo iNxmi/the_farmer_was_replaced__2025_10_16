@@ -1,8 +1,10 @@
-import Plant, Path, Move, Utils, Constants
+import Planter, Path, Move, Utils, Constants
+
+planter = Planter.new()
 
 def spawn_maze():
 	Utils.initialize()
-	Plant.set(Entities.Bush)
+	planter["set"](Entities.Bush)
 	substance = get_world_size() * 2**(num_unlocked(Unlocks.Mazes) - 1)
 	use_item(Items.Weird_Substance, substance)
 
