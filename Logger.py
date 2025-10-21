@@ -1,22 +1,22 @@
 def new(name):
-	def print(string, prefix = "PRINT"):
+	def print(object, prefix = "PRINT"):
 		time = str(get_time())
-		quick_print(time + "-" + name + "-" + prefix + ": " + string)
+		quick_print(time + "-" + name + "-" + prefix + ": " + str(object))
 	
-	def debug(string):
-		print(string, "DEBUG")
+	def debug(object):
+		print(object, "DEBUG")
 	
-	def info(string):
-		print(string, "INFO")
+	def info(object):
+		print(object, "INFO")
 		
-	def warning(string):
-		print(string, "WARNING")
+	def warning(object):
+		print(object, "WARNING")
 		
-	def error(string):
-		print(string, "ERROR")
+	def error(object):
+		print(object, "ERROR")
 		
-	def critical(string):
-		print(string, "CRITICAL")
+	def critical(object):
+		print(object, "CRITICAL")
 	
 	return {
 		"debug": debug,
