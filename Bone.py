@@ -24,7 +24,7 @@ def bone_defined_path():
 		Move.to((0, 0))
 		change_hat(Hats.Dinosaur_Hat)
 		while can_move(North) or can_move(East) or can_move(South) or can_move(West):
-			Move.to((0, 0))			
+			Move.to((0, 0))
 			for position in path:
 				Move.to(position)
 				
@@ -32,6 +32,7 @@ def bone_defined_path():
 
 		
 Utils.initialize()
+set_world_size(10)
 while True:
 	bone_defined_path()
 

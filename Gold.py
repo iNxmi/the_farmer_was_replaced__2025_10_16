@@ -23,8 +23,5 @@ while True:
 		else:
 			move(Constants.BEHIND_OF[front])
 			front = Constants.BEHIND_OF[front]
-			
-	#substance = get_world_size() * 2**(num_unlocked(Unlocks.Mazes) - 1)
-	#use_item(Items.Weird_Substance, substance)
 	
 	harvest()

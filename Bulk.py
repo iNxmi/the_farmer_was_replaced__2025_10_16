@@ -4,7 +4,6 @@ log = Logger.new("Bulk")
 
 def path(path, function):
 	threads = list()
-	log["debug"](threads)	
 
 	Move.origin()
 	for position in path:
@@ -19,13 +18,11 @@ def path(path, function):
 		thread = Thread.new(execute)
 		threads.append(thread)
 		thread["start"]()
-		log["debug"](len(threads))	
 
 	Move.origin()
 
 	while len(threads) > 0:
 		thread = threads.pop()
-		log["debug"](len(threads))
 		thread["join"]()
 
 path_vertical = Path.vertical(0)

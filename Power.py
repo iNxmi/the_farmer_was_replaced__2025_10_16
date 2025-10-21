@@ -1,34 +1,37 @@
-import Utils, Move, Path, List, Planter, Drones, Harvest
-
+import Utils, Move, Path, Planter, Bulk
 
 planter = Planter.new()
-def power():
-	drones = set()
-	for y in range(get_world_size()):
-		Move.to((0, y))
-		
-		while num_drones() >= max_drones():
-			pass
-		
-		def execute():
-			for position in Path.horizontal(y):
-				Move.to(position)
-				planter["set"](Entities.Sunflower)	
-		
-		drone = spawn_drone(execute)
-		drones.add(drone)
-		
-	Move.to((0, 0))
+planter["set_watering_threshold"](0.25)
 
-	Drones.join(drones)
-	drones = set()
-		
-	for level in range(15, 7 - 1, -1):
-		
-		def condition_function():
-			return measure() == level
-		
-		Harvest.multi_threaded(condition_function)
+def function_plant(position_start):
+	y = position_start[1]
+	for position in Path.horizontal(y):
+		Move.to(position)
+		planter["set"](Entities.Sunflower)
+
+def function_harvest(level):
+	
+	def execute(position_start):
+		y = position_start[1]
+		for position in Path.horizontal(y):
+			Move.to(position)
+			
+			if measure() != level:
+				continue
+				
+			while not can_harvest():
+				pass
+				
+			harvest()
+	
+	return execute
+	
+
+def power():
+	Bulk.horizontal(function_plant)
+	
+	for level in {15, 14, 13, 12, 11, 10, 9, 8, 7}:
+		Bulk.horizontal(function_harvest(level))
 
 Utils.initialize()
 while True:
