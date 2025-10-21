@@ -1,3 +1,6 @@
+def origin():
+	to((0, 0))
+
 def to(position):
 	x = position[0]
 	to_x(x)

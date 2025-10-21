@@ -44,7 +44,7 @@ def new():
 			till()
 			
 		global watering_threshold
-		while get_water() < watering_threshold:
+		while get_water() <= watering_threshold:
 			use_item(Items.Water)
 				
 		if get_entity_type() != entity:
