@@ -52,7 +52,7 @@ def new():
 			if actual < needed:
 				log["warn"]("Nor enough '" + str(item) + "', needed=" + str(needed) + " actual=" + str(actual))
 			
-		if get_forcing() or can_harvest():
+		if (get_harvesting() and can_harvest()) or get_forcing():
 			harvest()
 
 		while get_tilling() and get_ground_type() != Constants.ENTITY_TO_GROUND[entity]:

@@ -14,12 +14,7 @@ def function_plant(position_start):
 				
 			planter["set"](Entities.Pumpkin)
 
-
-def pumpkin():
-	Bulk.horizontal(function_plant)
-	harvest()
-
-
 Utils.initialize()
 while True:
-	pumpkin()
+	Bulk.horizontal(function_plant)
+	harvest()

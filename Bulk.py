@@ -6,11 +6,17 @@ def path(path, function):
 	threads = list()
 
 	Move.origin()
-	for position in path:
+	length = len(path)
+	for index in range(length):
+		position = path[index]
 		Move.to(position)
 		
 		def execute():
 			function(position)
+		
+		if index >= length - 1:
+			execute()
+			break
 		
 		while num_drones() >= max_drones():
 			pass

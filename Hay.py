@@ -1,6 +1,5 @@
 import Utils, Path, Companion
 
-
+Utils.initialize()
 while True:
-	Utils.initialize()
 	Companion.full(Entities.Grass)

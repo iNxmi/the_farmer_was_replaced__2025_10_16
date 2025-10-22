@@ -1,0 +1,46 @@
+import Move, Math, Path, Utils, Bulk
+
+def plot(function, origin = (0, 0)):
+	grid = {}
+	for y in range(get_world_size()):
+		for x in range(get_world_size()):
+			grid[(x, y)] = y - (function(x - origin[0]) + origin[1])
+	
+	def render_row(position_start):
+		y = position_start[1]
+		for position in Path.horizontal(y):
+			Move.to(position)
+			
+			sign = Math.sign(grid[position])
+			if sign == 0:
+				till()
+				continue
+			
+			signs = set()
+			for delta in {(1, 0), (-1, 0), (0, 1), (0, -1)}:
+				neighbor = (position[0] + delta[0], position[1] + delta[1])
+				
+				if neighbor[0] < 0 or neighbor[0] >= get_world_size():
+					continue
+				if neighbor[1] < 0 or neighbor[1] >= get_world_size():
+					continue		
+		
+				sign_neighbor = Math.sign(grid[neighbor])
+				signs.add(sign_neighbor)
+				
+				if (1 in signs) and (-1 in signs):
+					till()
+					break
+	
+	Bulk.horizontal(render_row)
+
+def function_a(x):
+	return -(x / 2) ** 2
+	
+def function_b(x):
+	return x
+
+Utils.initialize()
+plot(function_a, (16, 16))
+plot(function_b, (16, 16))
+	
