@@ -1,38 +1,23 @@
-import Utils, Move, Path, Planter, Bulk
+import Bulk, Planter, Path, Utils, Move
 
 planter = Planter.new()
-planter["set_watering_threshold"](0.25)
+planter["set_forcing"](True)
+planter["set_watering_threshold"](0.5)
 
-def function_plant(position_start):
+def function(position_start):
 	y = position_start[1]
-	for position in Path.horizontal(y):
-		Move.to(position)
-		planter["set"](Entities.Sunflower)
-
-def function_harvest(level):
-	
-	def execute(position_start):
-		y = position_start[1]
-		for position in Path.horizontal(y):
+	path = Path.horizontal(y)
+	while True:
+		for position in path:
 			Move.to(position)
 			
-			if measure() != level:
-				continue
+			if measure() == 15:
+				if not can_harvest():
+					continue 
+					
+				harvest()
 				
-			while not can_harvest():
-				pass
-				
-			harvest()
-	
-	return execute
-	
-
-def power():
-	Bulk.horizontal(function_plant)
-	
-	for level in {15, 14, 13, 12, 11, 10, 9, 8, 7}:
-		Bulk.horizontal(function_harvest(level))
-
-Utils.initialize()
-while True:
-	power()
+			planter["set"](Entities.Sunflower)
+			
+Utils.initialize(31)
+Bulk.horizontal(function)

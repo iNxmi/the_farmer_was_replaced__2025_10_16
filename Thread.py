@@ -44,8 +44,9 @@ def new(function):
 		if drone == None:
 			log["error"]("Thread has not been started")
 			return
-			
-		wait_for(drone)
+		
+		value = wait_for(drone)
+		return value
 	
 	return {
 		"get_random_hat": get_random_hat,

@@ -1,3 +1,10 @@
+def get_index(lst, element):
+	for index in range(len(lst)):
+		if lst[index] == element:
+			return index
+			
+	return None
+
 def get_sorted(lst):
 	result = list(lst)
 	

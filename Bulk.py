@@ -25,10 +25,10 @@ def path(path, function):
 		thread = threads.pop()
 		thread["join"]()
 
-path_vertical = Path.vertical(0)
 def horizontal(function):
-	path(path_vertical, function)
+	positions = Path.vertical(0)
+	path(positions, function)
 	
-path_horizontal = Path.horizontal(0)
 def vertical(function):
-	path(path_horizontal, function)
+	positions = Path.horizontal(0)
+	path(positions, function)

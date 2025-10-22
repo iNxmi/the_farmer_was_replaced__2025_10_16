@@ -1,4 +1,4 @@
-import Utils, Move, Path, Planter, List, Bulk
+import Utils, Move, Path, Planter, List, Bulk, Logger
 
 planter = Planter.new()
 def function_plant(position_start):
