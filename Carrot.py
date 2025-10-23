@@ -1,7 +1,4 @@
-import Utils, Path, Companion, Planter
+import Utils, Companion
 
-planter = Planter.new()
-
-while True:
-	Utils.initialize()
-	Companion.full(Entities.Carrot, planter)
+Utils.initialize()
+Companion.parallel(Entities.Carrot)

@@ -48,4 +48,5 @@ def function_new(position_start):
 				
 			planter["set"](Entities.Sunflower)
 			
+Utils.initialize()
 Bulk.horizontal(function_new)

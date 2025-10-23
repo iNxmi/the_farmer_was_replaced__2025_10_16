@@ -1,5 +1,4 @@
-import Utils, Path, Companion
+import Utils, Companion
 
 Utils.initialize()
-while True:
-	Companion.full(Entities.Grass)
+Companion.parallel(Entities.Grass)

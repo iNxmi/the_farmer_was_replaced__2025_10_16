@@ -1,6 +1,6 @@
 import Move, Math, Path, Utils, Bulk
 
-def plot(function, origin = (0, 0)):
+def plot(function, origin = (0, 0), scale = 1):
 	grid = {}
 	for y in range(get_world_size()):
 		for x in range(get_world_size()):
@@ -13,7 +13,8 @@ def plot(function, origin = (0, 0)):
 			
 			sign = Math.sign(grid[position])
 			if sign == 0:
-				till()
+				if get_ground_type() != Grounds.Soil:
+					till()
 				continue
 			
 			signs = set()
@@ -29,18 +30,15 @@ def plot(function, origin = (0, 0)):
 				signs.add(sign_neighbor)
 				
 				if (1 in signs) and (-1 in signs):
-					till()
+					if get_ground_type() != Grounds.Soil:
+						till()
 					break
 	
 	Bulk.horizontal(render_row)
 
-def function_a(x):
-	return -(x / 2) ** 2
+def function(x):
+	return 3
 	
-def function_b(x):
-	return x
-
 Utils.initialize()
-plot(function_a, (16, 16))
-plot(function_b, (16, 16))
+plot(function, (16, 16))
 	
