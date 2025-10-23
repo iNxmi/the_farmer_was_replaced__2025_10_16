@@ -46,6 +46,9 @@ def scan():
 			
 	return cache
 
+def parallel():
+	pass
+
 spawn_maze()
 cache = scan()
 iteration = 0

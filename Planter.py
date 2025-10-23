@@ -20,21 +20,13 @@ def new():
 		global tilling
 		tilling = value
 	
-	watering_threshold = 0.0
-	def get_watering_threshold():
-		global watering_threshold
-		return watering_threshold
-	def set_watering_threshold(value):
-		global watering_threshold
-		watering_threshold = value
-	
-	fertilizing = False
-	def get_fertilizing():
-		global fertilizing
-		return fertilizing
-	def set_fertilizing(value):
-		global fertilizing
-		fertilizing = value
+	minimum_water = 0.0
+	def get_minimum_water():
+		global minimum_water
+		return minimum_water
+	def set_minimum_water(value):
+		global minimum_water
+		minimum_water = value
 		
 	forcing = False
 	def get_forcing():
@@ -45,27 +37,26 @@ def new():
 		forcing = value
 	
 	def set(entity):
-		cost = get_cost(entity)
-		for item in cost:
-			needed = cost[item]
-			actual = num_items(item)
-			if actual < needed:
-				log["warn"]("Nor enough '" + str(item) + "', needed=" + str(needed) + " actual=" + str(actual))
-			
+		if get_forcing() or (get_entity_type() != entity) or (get_harvesting() and can_harvest()):
+			cost = get_cost(entity)
+			for item in cost:
+				needed = cost[item]
+				actual = num_items(item)
+				if actual < needed:
+					log["warn"]("Nor enough '" + str(item) + "', needed=" + str(needed) + " actual=" + str(actual))
+					return
+					
 		if (get_harvesting() and can_harvest()) or get_forcing():
 			harvest()
 
 		while get_tilling() and get_ground_type() != Constants.ENTITY_TO_GROUND[entity]:
 			till()
 			
-		while get_water() <= get_watering_threshold():
+		while (get_water() < get_minimum_water()) and num_items(Items.Water) >= 1:
 			use_item(Items.Water)
 		
 		if get_entity_type() != entity:
 			plant(entity)
-		
-		if get_fertilizing():
-			use_item(Items.Fertilizer)
 	
 	return {
 		"get_harvesting": get_harvesting,
@@ -74,11 +65,8 @@ def new():
 		"get_tilling": get_tilling,
 		"set_tilling": set_tilling,
 		
-		"get_watering_threshold": get_watering_threshold,
-		"set_watering_threshold": set_watering_threshold,
-		
-		"get_fertilizing": get_fertilizing,
-		"set_fertilizing": set_fertilizing,
+		"get_minimum_water": get_minimum_water,
+		"set_minimum_water": set_minimum_water,
 		
 		"get_forcing": get_forcing,
 		"set_forcing": set_forcing,

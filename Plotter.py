@@ -37,8 +37,8 @@ def plot(function, origin = (0, 0), scale = 1):
 	Bulk.horizontal(render_row)
 
 def function(x):
-	return 3
+	return x ** 2
 	
 Utils.initialize()
-plot(function, (16, 16))
+plot(function, (16, 1))
 	
