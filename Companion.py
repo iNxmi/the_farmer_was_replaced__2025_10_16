@@ -1,6 +1,5 @@
 import Move, Path, Planter, Thread, Bulk
 
-
 def parallel(entity):
 	
 	def generate_path():
@@ -23,7 +22,7 @@ def parallel(entity):
 	
 	planter = Planter.new()
 	planter["set_forcing"](True)
-	planter["set_minimum_water"](0.75)
+	planter["set_minimum_water"](0.5)
 	planter_companion = Planter.new()
 	def execute(position_start):
 		while True:

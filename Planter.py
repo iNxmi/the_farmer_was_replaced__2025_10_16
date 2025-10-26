@@ -43,7 +43,7 @@ def new():
 				needed = cost[item]
 				actual = num_items(item)
 				if actual < needed:
-					log["warn"]("Nor enough '" + str(item) + "', needed=" + str(needed) + " actual=" + str(actual))
+					log["warning"]("Nor enough '" + str(item) + "', needed=" + str(needed) + " actual=" + str(actual))
 					return
 					
 		if (get_harvesting() and can_harvest()) or get_forcing():

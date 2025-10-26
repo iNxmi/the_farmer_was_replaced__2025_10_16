@@ -21,9 +21,9 @@ def new(function):
 		drone = value
 		
 	def execute():
-		if get_random_hat():
-			hat = Random.list(Constants.HATS)
-			change_hat(hat)
+		#if get_random_hat():
+			#hat = Random.list(Constants.HATS)
+			#change_hat(hat)
 			
 		function()
 		

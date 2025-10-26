@@ -23,6 +23,6 @@ def new(name):
 		"info": info,
 		"warning": warning,
 		"error": error,
-		"critical": critical
+		"criticalk": critical
 	}
 	
