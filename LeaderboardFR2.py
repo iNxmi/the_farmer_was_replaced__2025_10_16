@@ -1,24 +1,5 @@
-import Move, Path
-
-def ceil_step(value, step):
-	if step == 0:
-		return value
-		
-	q = value // step
-	r = value - (q * step)
-	
-	if r == 0:
-		return q * step
-		
-	return (q + 1) * step
-	
-def ceil(value):
-	i = value // 1
-	
-	if x > 0:
-		return i + 1
-	
-	return i
+import Move, Path, Math
+import Hay, Cactus
 
 def hay(add):
 	clear()
@@ -27,22 +8,10 @@ def hay(add):
 	count_start = num_items(Items.Hay)
 	count_goal = count_start + add
 	while num_items(Items.Hay) < count_goal:
-		if level_expand == 0:
-			if can_harvest():	
-				harvest()
-			continue
-			
-		if level_expand == 1:
-			if can_harvest():	
-				harvest()
-			move(North)
-			continue
-		
-		for position in Path.snake():
-			Move.to(position)
-		
-			if can_harvest():	
-				harvest()
+		if num_unlocked(Unlocks.Megafarm) <= 0:
+			Hay.simple()
+		else:
+			Hay.parallel()
 	
 def wood(add):
 	clear()
@@ -117,7 +86,7 @@ def cactus(add):
 	count_start = num_items(Items.Cactus)
 	count_goal = count_start + add
 	while num_items(Items.Cactus) < count_goal:
-		pass
+		Cactus.simple()
 
 ITEM_TO_FUNCTION = {
 	Items.Hay: hay,
@@ -131,7 +100,8 @@ def farm_cost(object, amount = 1, multiplier = 1):
 	cost = get_cost(object)
 	for item in cost:
 		value = cost[item] * amount
-		count = ceil_step(value, get_world_size() ** 2) * multiplier
+		iterations = Math.ceil(value / (get_world_size() ** 2))
+		count = iterations * (get_world_size() ** 2) * multiplier
 		
 		function = ITEM_TO_FUNCTION[item]
 		function(count)
@@ -173,9 +143,10 @@ if __name__ == "__main__":
 	auto_unlock(Unlocks.Grass)
 	auto_unlock(Unlocks.Expand)
 	auto_unlock(Unlocks.Carrots)
-	auto_unlock(Unlocks.Expand)
+	#auto_unlock(Unlocks.Expand)
 	auto_unlock(Unlocks.Cactus)
 	auto_unlock(Unlocks.Trees)
+	auto_unlock(Unlocks.Dinosaurs)
 
 	while True:
 		pass

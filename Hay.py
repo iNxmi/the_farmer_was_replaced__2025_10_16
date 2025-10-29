@@ -1,11 +1,22 @@
 import Utils, Companion, Move, Path
 
 def simple():
-	path = Path.snake()
-	for position in path:
+	level_expand = num_unlocked(Unlocks.Expand)
+	if level_expand == 0:
+		if can_harvest():	
+			harvest()
+			return
+			
+	if level_expand == 1:
+		if can_harvest():	
+			harvest()
+		move(North)
+		return
+	
+	for position in Path.snake():
 		Move.to(position)
-		
-		if can_harvest():
+	
+		if can_harvest():	
 			harvest()
 		
 def parallel():

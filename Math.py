@@ -36,6 +36,14 @@ def max(numbers):
 			result = number
 			
 	return result
-		
+
+def ceil(value):
+	i = value // 1
+	
+	if value > 0:
+		return i + 1
+	
+	return i
+	
 	
 	
