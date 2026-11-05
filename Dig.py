@@ -7,12 +7,13 @@ def parallel():
         path = Path.horizontal(y)
         
         for position in path:
-            Move.to(position)
+            Move.to(position) 
             dig()
-    
+        
     Bulk.horizontal(execute)
     
 if __name__ == "__main__":
     Utils.initialize()
+    jump(Unlocks.Quartz)
     while True:
         parallel()
